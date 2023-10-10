@@ -1,0 +1,13 @@
+import React from "react";
+import Nav from "../components/Home/Nav";
+import { Outlet } from "react-router-dom";
+const Root = () => {
+  return (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
+};
+
+export default Root;
