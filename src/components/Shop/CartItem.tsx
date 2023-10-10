@@ -3,6 +3,7 @@ import { MdClose, MdRemove, MdAdd } from "react-icons/md";
 import ShoppingCartModel from "../../model/shopping-cart";
 import { TextInput } from "flowbite-react";
 import { ShoppingCartContext } from "../../context/ShoppingCart";
+import { Icon, IconButton } from "@mui/material";
 
 interface Props {
   item: ShoppingCartModel.CartItem;
@@ -24,20 +25,22 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <p className="w-full break-words">{item.title}</p>
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <MdRemove
-              size={24}
+            <IconButton
               onClick={() => shoppingCartCtx.handleDecreaseAmount(item)}
-            />
+            >
+              <MdRemove size={24} />
+            </IconButton>
             <input
               type="text"
               readOnly
               value={item.amount}
               className="w-5 text-center"
             />
-            <MdAdd
-              size={24}
+            <IconButton
               onClick={() => shoppingCartCtx.handleIncreaseAmount(item)}
-            />
+            >
+              <MdAdd size={24} />
+            </IconButton>
           </div>
           <span className="font-semibold text-lg leading-5 min-w-[100px] flex flex-col items-end">
             ${item.amountPrice.toFixed(2)}
