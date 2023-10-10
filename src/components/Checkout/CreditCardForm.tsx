@@ -127,7 +127,7 @@ const CreditCardForm: React.FC<Props> = ({
   const shoppingCartCtx = useContext(ShoppingCartContext);
   return (
     <Card variant="outlined" sx={{width: "100%", maxWidth: "800px"}}>
-      <div className="w-full border flex flex-col gap-8 p-4">
+      <div className="w-full border flex flex-col gap-4 p-4">
         <div className="w-full">
           <TextField
             size="small"
@@ -155,7 +155,7 @@ const CreditCardForm: React.FC<Props> = ({
             fullWidth
           />
         </div>
-        <div className="w-full flex gap-4">
+        <div className="w-full flex flex-col mobile:flex-row gap-4">
           <TextField
             size="small"
             name="cardholderName"

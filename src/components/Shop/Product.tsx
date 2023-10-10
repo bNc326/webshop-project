@@ -12,7 +12,7 @@ interface Props {
 const Product: React.FC<Props> = ({ products }) => {
   const shopCtx = useContext(ShopContext);
   return (
-    <div className="w-full flex flex-wrap gap-4 p-4">
+    <div className="w-full flex flex-wrap gap-4">
       {products.map((prod) => (
         <ProductCard key={prod.id} product={prod} />
       ))}

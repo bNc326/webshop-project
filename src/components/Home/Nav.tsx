@@ -30,8 +30,13 @@ const Nav = () => {
 
   return (
     <header className="w-full py-4 flex justify-center">
-      <nav className="w-full max-w-[1200px] flex justify-between items-center">
-        <h2 className="text-3xl font-semibold">Webshop</h2>
+      <nav className="w-full max-w-[1200px] flex justify-between items-center px-4">
+        <h2
+          className="text-dynamicList font-semibold cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Webshop
+        </h2>
         <div className="flex gap-4">
           <div className="flex gap-4 items-center">
             <IconContext.Provider value={{ color: "black", size: "24px" }}>
@@ -40,23 +45,22 @@ const Nav = () => {
                   alt="Avatar"
                   src="http://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
                 />
-                John Doe
+                <span className="hidden mobile:block">John Doe</span>
               </span>
               <AiOutlineHeart />
-              <div className="border-red-600 border">
-                <IconButton
-                  onMouseEnter={handleOpenMenu}
-                  onClick={() => navigate("cart")}
+              <IconButton onClick={handleOpenMenu}>
+                <Badge
+                  badgeContent={shoppingCartCtx.renderCart.totalAmount}
+                  color="primary"
                 >
-                  <Badge
-                    badgeContent={shoppingCartCtx.renderCart.totalAmount}
-                    color="primary"
-                  >
-                    <MdShoppingCart />
-                  </Badge>
-                </IconButton>
-                <PreviewCart isOpen={open} anchorEl={anchorEl} handleCloseMenu={handleCloseMenu}/>
-              </div>
+                  <MdShoppingCart />
+                </Badge>
+              </IconButton>
+              <PreviewCart
+                isOpen={open}
+                anchorEl={anchorEl}
+                handleCloseMenu={handleCloseMenu}
+              />
             </IconContext.Provider>
           </div>
         </div>

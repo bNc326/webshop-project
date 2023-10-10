@@ -62,7 +62,7 @@ const CreditCard: React.FC<Props> = ({ input, isBackSide }) => {
               />
             </div>
             <div className="w-full h-1/3 flex items-center justify-center">
-              <div className="w-full flex justify-center text-3xl">
+              <div className="w-full flex justify-center text-dynamicBtn">
                 <InputMask
                   mask={"9999 9999 9999 9999"}
                   placeholder="&#9913;&#9913;&#9913;&#9913; &#9913;&#9913;&#9913;&#9913; &#9913;&#9913;&#9913;&#9913; &#9913;&#9913;&#9913;&#9913;"

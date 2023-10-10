@@ -37,43 +37,32 @@ const CartTotal = () => {
       location.pathname === "/cart/checkout" &&
       checkoutCtx.activeStep === 2
     ) {
-      console.log("checkout")
+      console.log("checkout");
       checkoutCtx.handleForwardStep();
     }
   };
 
   return (
-    <div className="w-full px-4 flex flex-col gap-6">
-      <h2 className="font-semibold text-2xl pb-4">Cart Totals</h2>
+    <div className="w-full p-4 flex flex-col gap-6">
+      <h2 className="font-semibold text-dynamicTitle3 pb-4">Cart Totals</h2>
       <div className="flex flex-col gap-4 text-2xl">
-        <div className="flex gap-4 justify-between w-full">
-          <span className="w-1/2">Item amount: </span>
-          <span className="font-semibold w-1/2">
-            {shoppingCartCtx.renderCart.totalAmount}
-          </span>
-        </div>
-        <div className="flex gap-4 justify-between w-full">
-          <span className="w-1/2">Subtotal: </span>
-          <span className="font-semibold w-1/2">
-            ${shoppingCartCtx.renderCart.totalItemPrice.toFixed(2)}
-          </span>
-        </div>
-        <div className="flex gap-4 justify-between w-full">
-          <span className="w-1/2">Shipping: </span>
-          <span className="font-semibold w-1/2">
-            ${shoppingCartCtx.renderCart.shippingPrice.toFixed(2)}
-          </span>
-        </div>
-        <div className="flex gap-4 justify-between w-full">
-          <span className="w-1/2">Payment: </span>
-          <span className="font-semibold w-1/2">
-            ${shoppingCartCtx.renderCart.paymentPrice.toFixed(2)}
-          </span>
-        </div>
-        <div className="flex gap-4 justify-between w-full">
-          <span className="w-1/2">VAT: </span>
-          <span className="font-semibold w-1/2">{"0%"}</span>
-        </div>
+        <TotalItem
+          title="Item amount"
+          value={shoppingCartCtx.renderCart.totalAmount}
+        />
+        <TotalItem
+          title="Subtotal"
+          value={`$${shoppingCartCtx.renderCart.totalItemPrice.toFixed(2)}`}
+        />
+        <TotalItem
+          title="Shipping"
+          value={`$${shoppingCartCtx.renderCart.shippingPrice.toFixed(2)}`}
+        />
+        <TotalItem
+          title="Payment"
+          value={`$${shoppingCartCtx.renderCart.paymentPrice.toFixed(2)}`}
+        />
+        <TotalItem title="VAT" value={"0%"} />
       </div>
       <div>
         <span className="block w-full h-[2px] bg-gray-200"></span>
@@ -168,14 +157,14 @@ const CartTotal = () => {
       />
       <FeatureCard
         title="Secure Payment"
-        desc="100% secure payment via PayPal and credit card."
+        desc="100% secure payment via credit card."
         Icon={RiSecurePaymentFill}
       />
-      <FeatureCard
+      {/* <FeatureCard
         title="Free Shipping"
         desc="100% free shipping over $300"
         Icon={MdLocalShipping}
-      />
+      /> */}
     </div>
   );
 };
@@ -194,6 +183,18 @@ const FeatureCard: React.FC<{
         <h3 className="font-semibold text-2xl">{title}</h3>
         <p className="text-base">{desc}</p>
       </div>
+    </div>
+  );
+};
+
+const TotalItem: React.FC<{ title: string; value: any }> = ({
+  title,
+  value,
+}) => {
+  return (
+    <div className="flex gap-4 justify-between w-full">
+      <span className="w-1/2">{title}</span>
+      <span className="font-semibold w-1/2">{value}</span>
     </div>
   );
 };

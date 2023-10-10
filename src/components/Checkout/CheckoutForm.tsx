@@ -163,7 +163,10 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
     }
   };
 
-  const handleGoogleAutocomplete = (value: string) => {
+  const handleGoogleAutocomplete = () => {
+    const value = googleAutocompleteRef.current?.value as string;
+    console.log("fn value", value);
+
     if (!input.get.city.firstTouch) {
       input.set((prev) => ({
         ...prev,
@@ -179,10 +182,11 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
     testInput("city", value);
   };
 
+  console.log(input.get.city);
 
   return (
-    <div className="space-y-8">
-      <div className="w-full flex gap-4">
+    <div className="space-y-4">
+      <div className="w-full flex flex-col laptop:flex-row gap-4">
         <TextField
           variant="outlined"
           label="First Name"
@@ -224,7 +228,7 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
           onBlur={handleBlur}
         />
       </div>
-      <div className="w-full flex gap-4">
+      <div className="w-full flex flex-col laptop:flex-row gap-4">
         <Autocomplete
           options={countries}
           open={openCountryInput as boolean}
@@ -290,11 +294,7 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
         />
         <GoogleAutocomplete
           className="w-full"
-          onPlaceChanged={() =>
-            handleGoogleAutocomplete(
-              googleAutocompleteRef.current?.value as string
-            )
-          }
+          onPlaceChanged={handleGoogleAutocomplete}
         >
           <TextField
             variant="outlined"
@@ -303,7 +303,6 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
             size={"small"}
             placeholder="Budapest"
             name="city"
-            value={input.get.city.value}
             required={input.get.city.required}
             inputProps={{ ref: googleAutocompleteRef }}
             helperText={
@@ -314,16 +313,12 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
                 : ""
             }
             error={input.get.city.firstTouch && !input.get.city.valid}
-            onChange={() =>
-              handleGoogleAutocomplete(
-                googleAutocompleteRef.current?.value as string
-              )
-            }
+            onChange={handleChange}
             onBlur={handleBlur}
           />
         </GoogleAutocomplete>
       </div>
-      <div className="w-full flex gap-4">
+      <div className="w-full flex flex-col laptop:flex-row gap-4">
         <TextField
           variant="outlined"
           label="Zip code"
@@ -365,7 +360,7 @@ const CheckoutForm: React.FC<Props> = ({ input, isFirstForm }) => {
           onBlur={handleBlur}
         />
       </div>
-      <div className="w-full flex gap-4">
+      <div className="w-full flex flex-col laptop:flex-row gap-4">
         <TextField
           variant="outlined"
           label="Email"

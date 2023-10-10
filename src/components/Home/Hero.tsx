@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 const Hero = () => {
   return (
     <div className="w-full flex justify-center bg-gray-200">
-      <div className="w-full max-w-[1200px] flex items-center">
-        <div className="w-full flex flex-col gap-2">
-          <h1 className="text-6xl">Rain Jacket Women</h1>
-          <p className="text-lg text-gray-500">
+      <div className="w-full max-w-[1200px] flex flex-col mobile:flex-row gap-4 items-center p-4">
+        <div className="w-full flex flex-col  gap-2">
+          <h1 className="text-dynamicTitle">Rain Jacket Women</h1>
+          <p className="text-dynamicList text-gray-500">
             Lightweight perfet for trip or casual wear---Long sleeve with
             hooded, adjustable drawstring waist design. Button and zipper front
             closure raincoat, fully stripes Lined and The Raincoat has 2 side
@@ -15,9 +15,12 @@ const Hero = () => {
             hips, and the hood is generous but doesn't overdo it.Attached Cotton
             Lined Hood with Adjustable Drawstrings give it a real styled look.
           </p>
-          <div>
+          <div className="flex items-center gap-4">
+            <Button variant="outlined">
+              <span className="text-dynamicList">View product</span>
+            </Button>
             <Button variant="contained" endIcon={<MdShoppingCart size={20} />}>
-              <span className="text-lg">
+              <span className="text-dynamicList">
                 Shop <span className="font-semibold"> Now</span>
               </span>
             </Button>
@@ -28,7 +31,7 @@ const Hero = () => {
             src="https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg"
             alt="Hero"
             title="Hero"
-            className="block max-h-[400px]"
+            className="block  max-h-[300px]"
           />
         </div>
       </div>

@@ -28,6 +28,7 @@ interface Context {
   isFilterLoading: null | boolean;
   allCategories: string[];
   priceRange: number[];
+  sortByPrice: number[];
   handleSort: (sortOpt: { type: SortType; value: any }) => void;
   selectShipping: (index: number) => void;
   selectPayment: (index: number) => void;
@@ -48,6 +49,7 @@ export const ShopContext = createContext<Context>({
   isFilterLoading: false,
   allCategories: [],
   priceRange: [],
+  sortByPrice: [],
   handleSort: () => {},
   selectShipping: () => {},
   selectPayment: () => {},
@@ -124,22 +126,9 @@ const ShopContextProvider: React.FC<{ children: JSX.Element }> = ({
         price: 1,
         isSelected: false,
         isCard: true,
-      },
-      {
-        title: "Payment by PayPal",
-        logo: PayPal,
-        price: 1,
-        isSelected: false,
-        isCard: true,
-      },
+      }
     ],
-    selectedPaymentMethod: {
-      title: "Payment by Mastercard",
-      logo: MasterCard,
-      price: 1,
-      isSelected: false,
-      isCard: true,
-    },
+    selectedPaymentMethod: undefined,
     selectedShippingMethod: undefined,
   });
   const shop = new ShopModel.Shop(renderShop, setRenderShop);
@@ -205,7 +194,7 @@ const ShopContextProvider: React.FC<{ children: JSX.Element }> = ({
         );
       switch (sortBy) {
         case SortBy.DEFAULT:
-          filteredArray.sort(() => -1);
+          filteredArray.sort((a, b) => -1);
           break;
         case SortBy.RATE:
           filteredArray.sort((a, b) => b.rating.rate - a.rating.rate);
@@ -281,6 +270,7 @@ const ShopContextProvider: React.FC<{ children: JSX.Element }> = ({
     isFilterLoading,
     allCategories,
     priceRange,
+    sortByPrice,
     handleSort,
     selectShipping,
     selectPayment,

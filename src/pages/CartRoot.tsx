@@ -20,7 +20,7 @@ const CartRoot = () => {
   };
   return (
     <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1200px] flex flex-col pb-8">
+      <div className="w-full max-w-[1200px] flex flex-col pb-8 px-4">
         <Breadcrumb className="py-4">
           {links.map((link, index, arr) => (
             <Breadcrumb.Item
@@ -44,11 +44,11 @@ const CartRoot = () => {
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>
-        <div className="flex">
-          <div className={`${checkoutCtx.activeStep < 3 ? "w-3/5" : "w-full"}`}>
+        <div className="flex flex-col tablet:flex-row">
+          <div className={`w-full ${checkoutCtx.activeStep < 3 ? "tablet:w-3/5" : "w-full"}`}>
             <Outlet />
           </div>
-          <div className={`${checkoutCtx.activeStep < 3 ? "w-2/5" : "hidden"}`}>
+          <div className={`w-full ${checkoutCtx.activeStep < 3 ? "tablet:w-2/5" : "hidden"}`}>
             <CartTotal />
           </div>
         </div>

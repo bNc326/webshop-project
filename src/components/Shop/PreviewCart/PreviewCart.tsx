@@ -31,7 +31,7 @@ const PreviewCart: React.FC<Props> = ({
       }}
       transformOrigin={{
         vertical: "top",
-        horizontal: "center",
+        horizontal: "right",
       }}
     >
       <PreviewCartTable>

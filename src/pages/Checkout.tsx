@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CheckoutModel from "../model/checkout";
 
 import { Step, Stepper, StepLabel } from "@mui/material";
 import Order from "../components/Checkout/steps/Order";
@@ -14,42 +13,6 @@ import { ShoppingCartContext } from "../context/ShoppingCart";
 import CircularProgress from "@mui/material/CircularProgress";
 import OrderResult from "../components/Checkout/OrderResult";
 const Checkout = () => {
-  const DUMMY_USER = new CheckoutModel.User({
-    firstName: "John",
-    lastName: "Doe",
-    country: "Hungary",
-    city: "Budapest",
-    zipCode: "1000",
-    address: "Example street 1/b",
-    email: "example@example.com",
-    callingCode: "+36",
-    phone: "1231231",
-    shipping: [
-      new CheckoutModel.ShippingInformation({
-        firstName: "John",
-        lastName: "Doe",
-        country: "Hungary",
-        city: "Budapest",
-        zipCode: "1000",
-        address: "Example street 1/b",
-        email: "example@example.com",
-        callingCode: "+36",
-        phone: "301231231",
-      }),
-      new CheckoutModel.ShippingInformation({
-        firstName: "Becky",
-        lastName: "Carroll",
-        country: "Hungary",
-        city: "Budapest",
-        zipCode: "1000",
-        address: "Example street 1/b",
-        email: "example@example.com",
-        callingCode: "+36",
-        phone: "301231511",
-      }),
-    ],
-  });
-
   const steps = [
     "Order Information",
     "Shipping & Pay",
@@ -61,6 +24,7 @@ const Checkout = () => {
   const [isLoading, setLoading] = useState<boolean | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: 0 });
     setLoading(true);
     const cleanup = setTimeout(() => {
       if (shoppingCartCtx.renderCart.items.length === 0) {
